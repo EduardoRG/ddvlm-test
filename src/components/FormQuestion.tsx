@@ -15,6 +15,7 @@ import anime from 'animejs';
 
 interface FormQuestionProps {
   id: string;
+  blockId?: string;
   text: string;
   cards: MessageCards['cards'];
   landbot: LandbotCore;
@@ -22,6 +23,7 @@ interface FormQuestionProps {
 
 export const FormQuestion = ({
   id,
+  blockId,
   landbot,
   text,
   cards,
@@ -84,16 +86,19 @@ export const FormQuestion = ({
                 {image && isWide && (
                   <CardMedia component="img" image={image} alt={title} />
                 )}
-                <CardContent>
-                  <Box mb={description ? 1 : 0}>
-                    <Typography variant="h6" sx={{ lineHeight: '1.2em' }}>
-                      {title}
-                    </Typography>
-                  </Box>
-                  {description && (
-                    <Typography variant="body2">{description}</Typography>
-                  )}
-                </CardContent>
+                {(blockId !== 'Nkvdlijr9' ||
+                  (!isWide && blockId === 'Nkvdlijr9')) && (
+                  <CardContent>
+                    <Box mb={description ? 1 : 0}>
+                      <Typography variant="h6" sx={{ lineHeight: '1.2em' }}>
+                        {title}
+                      </Typography>
+                    </Box>
+                    {description && (
+                      <Typography variant="body2">{description}</Typography>
+                    )}
+                  </CardContent>
+                )}
               </CardActionArea>
             </Card>
           </Grid>

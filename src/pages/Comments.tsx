@@ -5,7 +5,7 @@ import { landbot } from '../landbot';
 import { useEffect } from 'react';
 
 export const Comments = () => {
-  const { showEnding } = useLandbotEnding();
+  const { showEnding, setShowEnding } = useLandbotEnding();
   const { messages } = useMessages();
 
   useEffect(() => {
@@ -19,7 +19,13 @@ export const Comments = () => {
   return (
     <>
       <Messenger landbot={landbot} messages={messages} />
-      {showEnding && <Ending />}
+      {showEnding && (
+        <Ending
+          setShowEnding={(value) => {
+            setShowEnding(value);
+          }}
+        />
+      )}
     </>
   );
 };

@@ -12,14 +12,15 @@ import {
   CardContent,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { landbot } from '../landbot';
 import bookImage from '../assets/Portada DDVLM.jpg';
 
-interface EndingProps {
-  setShowEnding: (value: boolean) => void;
+interface BookCardScreenProps {
+  setShowBookCardScreen: (value: boolean) => void;
 }
 
-export const Ending = ({ setShowEnding }: EndingProps) => {
+export const BookCardScreen = ({
+  setShowBookCardScreen,
+}: BookCardScreenProps) => {
   const overlay = useRef<HTMLDivElement>(null);
   const isWide = useMediaQuery('(min-width: 730px)');
 
@@ -29,28 +30,22 @@ export const Ending = ({ setShowEnding }: EndingProps) => {
     anims.add({
       targets: overlay.current,
       opacity: [0, 1],
-      duration: 1000,
+      duration: 400,
       easing: 'easeInOutQuad',
-      delay: 1000,
     });
 
     anims.add({
       targets: '#ending-card',
       opacity: [0, 1],
       translateY: [50, 0],
-      scale: [0.6, 1],
-      duration: 1000,
+      scale: [0.9, 1],
+      duration: 400,
       easing: 'easeInOutQuad',
-      complete: () => {
-        landbot.sendMessage({
-          message: 'results',
-        });
-      },
     });
   }, []);
 
   const handleClickClose = () => {
-    setShowEnding(false);
+    setShowBookCardScreen(false);
   };
 
   return (

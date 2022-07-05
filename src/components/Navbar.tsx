@@ -8,8 +8,13 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
+import logoImage from '../assets/logo-white.png';
 
-export const Navbar = () => {
+interface NavbarProps {
+  setShowBookCardScreen: (value: boolean) => void;
+}
+
+export const Navbar = ({ setShowBookCardScreen }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const isWide = useMediaQuery('(min-width: 600px)');
   const open = Boolean(anchorEl);
@@ -18,6 +23,10 @@ export const Navbar = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleClickDDVLM = () => {
+    setShowBookCardScreen(true);
+    handleClose();
   };
 
   const resetExperience = () => {
@@ -43,8 +52,9 @@ export const Navbar = () => {
             horizontal: 'right',
           }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClickDDVLM}>
+            De donde viene la magia
+          </MenuItem>
           <MenuItem onClick={resetExperience}>Reiniciar experiencia</MenuItem>
         </Menu>
       </Box>
@@ -53,8 +63,12 @@ export const Navbar = () => {
         <IconButton href="https://www.literup.com/" target="_blank">
           <Avatar
             variant="square"
-            src="https://www.literup.com/build/images/literup-logo-sm.png"
+            // src="https://www.literup.com/build/images/literup-logo-sm.png"
+            src={logoImage}
             alt="literup"
+            sx={{
+              filter: 'invert(100%)',
+            }}
           />
         </IconButton>
       </Box>

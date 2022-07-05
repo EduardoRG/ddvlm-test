@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { Intro, Experience, Comments } from './pages';
 import {
@@ -7,6 +8,7 @@ import {
   responsiveFontSizes,
 } from '@mui/material';
 import { Navbar } from './components/Navbar';
+import { BookCardScreen } from './components/BookCardScreen';
 import { routes } from './routes';
 
 const theme = responsiveFontSizes(
@@ -32,6 +34,8 @@ const theme = responsiveFontSizes(
 );
 
 function App() {
+  const [showBookCardScreen, setShowBookCardScreen] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -42,7 +46,11 @@ function App() {
           paddingTop: { xs: 7.5, sm: 0 },
         }}
       >
-        <Navbar />
+        <Navbar
+          setShowBookCardScreen={(value) => {
+            setShowBookCardScreen(value);
+          }}
+        />
         <MemoryRouter>
           <Routes>
             <Route path={routes.root} element={<Intro />} />
@@ -50,6 +58,13 @@ function App() {
             <Route path={routes.comments} element={<Comments />} />
           </Routes>
         </MemoryRouter>
+        {showBookCardScreen && (
+          <BookCardScreen
+            setShowBookCardScreen={(value) => {
+              setShowBookCardScreen(value);
+            }}
+          />
+        )}
       </Box>
     </ThemeProvider>
   );

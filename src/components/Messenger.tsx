@@ -69,6 +69,7 @@ export const Messenger = ({ messages, landbot }: MessengerProps) => {
                 <FormQuestion
                   key={key}
                   id={key}
+                  blockId={extra?.id}
                   landbot={landbot}
                   text={rich_text}
                   cards={cards.map((card, index) => ({

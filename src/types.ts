@@ -37,6 +37,7 @@ type MessageCommonProps = {
   type: MessageTypes;
   timestamp: number;
   extra?: {
+    id?: string;
     author?: 'ursula' | 'marina' | 'rita';
   };
 };

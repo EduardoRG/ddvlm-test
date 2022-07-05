@@ -18,5 +18,5 @@ export const useLandbotEnding = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  return { showEnding };
+  return { showEnding, setShowEnding };
 };
